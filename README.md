@@ -1,2 +1,2 @@
-Adding doubling program
-Strict and inverse methods
+<p>Adding doubling program</p>
+<p>Strict and inverse methods</p>
