@@ -7,7 +7,8 @@ package ad.math;
  */
 public class Factorial
 {
-
+	private Factorial(){}
+	
     public static int get(byte x)
     {
         if (x <= 0) {

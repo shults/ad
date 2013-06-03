@@ -4,7 +4,10 @@
  */
 package ad;
 
-import ad.math.legandre.LegendrePolynomRecurrent;
+import ad.math.legandre.LegandrePolynom;
+import ad.math.Quadrature;
+import ad.math.Redistribution;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 /**
  *
@@ -13,30 +16,27 @@ import ad.math.legandre.LegendrePolynomRecurrent;
 public class Application
 {
 
-    private Application()
-    {
-    }
+	private Application()
+	{
+	}
 
-    public static Application getInstance() throws Exception
-    {
-        if (instance == null) {
-            throw new Exception("Instance not initialed. Run application");
-        }
-        return instance;
-    }
+	public static Application getInstance() throws Exception
+	{
+		if (instance == null) {
+			throw new Exception("Instance not initialed. Run application");
+		}
+		return instance;
+	}
 
-    public static void run() throws Exception
-    {
-        instance = new Application();
-        LegendrePolynomRecurrent lp2 = new LegendrePolynomRecurrent((byte) 4);
-        double x = -1;
-        double step = 0.005;
-        
-        boolean wasOne = false;
-        while (x <= 1 + step) {
-            System.out.println("x=" + String.format("%.15f", x) + "\t\ty=" + String.format("%.15f", lp2.getSecondDerivative(x)));
-            x += step;
-        }
-    }
-    private static Application instance;
+	public static void run() throws Exception
+	{
+		instance = new Application();
+		Quadrature quadrature = new Quadrature(4, Math.cos(Math.asin(1 / 1.5)), 0.9);
+		Redistribution redistribution = new Redistribution(quadrature);
+		for (Quadrature.QP qp : quadrature.getQuadraturePoints())
+		{
+			System.out.println(qp);
+		}
+	}
+	private static Application instance;
 }
