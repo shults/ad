@@ -2,6 +2,8 @@ package ad.math;
 
 import java.util.ArrayList;
 import ad.math.legandre.LegandrePolynom;
+import ad.math.matrix.Row;
+import ad.math.matrix.Coll;
 
 /**
  * This
@@ -142,6 +144,24 @@ public class Quadrature
 			this.orderQP();
 		}
 		return quadraturePoints;
+	}
+	
+	public Row getQuadraturePointsAngles() throws Exception
+	{
+		ArrayList<QP> qPoints = getQuadraturePoints();
+		Row angles = new Row(qPoints.size());
+		for (int i = 0; i < qPoints.size(); i++)
+			angles.setItemValue(i, qPoints.get(i).getV());
+		return angles;
+	}
+	
+	public Coll getQuadraturePointsWeights() throws Exception
+	{
+		ArrayList<QP> qPoints = getQuadraturePoints();
+		Coll angleWeight = new Coll(qPoints.size());
+		for (int i = 0; i < qPoints.size(); i++)
+			angleWeight.setItemValue(i, qPoints.get(i).getW());
+		return angleWeight;
 	}
 	
 	/**

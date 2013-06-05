@@ -1,7 +1,7 @@
 package ad.math;
 
 import ad.math.legandre.LegandrePolynom;
-import java.util.ArrayList;
+import ad.math.matrix.Matrix;
 
 /**
  *
@@ -13,32 +13,20 @@ public class Redistribution
 	public Redistribution(Quadrature quadrature)
 	{
 		this.quadrature = quadrature;
-		this.hmm = new double[quadrature.getM()][quadrature.getM()];
-		this.hmp = new double[quadrature.getM()][quadrature.getM()];
-		this.hpm = new double[quadrature.getM()][quadrature.getM()];
-		this.hpp = new double[quadrature.getM()][quadrature.getM()];
 	}
 	
-	public double[][][][] gerTedistributionMatrix()
-	{
-		if (redistributionMatrix == null)
-		{
-			redistributionMatrix = new double[2][2][quadrature.getM()][quadrature.getM()];
-		}
-		return redistributionMatrix;
-	}
-	
-	private double[][] getHmm() throws Exception
+	public Matrix getHmm() throws Exception
 	{
 		if (hmm == null)
 		{
+			hmm = new Matrix(quadrature.getM());
 			int i = 0, j;
 			for (Quadrature.QP qp_i : quadrature.getQuadraturePoints())
 			{
 				j = 0;
 				for (Quadrature.QP qp_j : quadrature.getQuadraturePoints())
 				{
-					hmm[i][j] = getRedistribution(qp_i.getV(), qp_j.getV());
+					hmm.setItemValue(i, j, getRedistributionValue(- qp_i.getV(), - qp_j.getV()));
 					j++;
 				}
 				i++;
@@ -47,17 +35,18 @@ public class Redistribution
 		return hmm;
 	}
 	
-	private double[][] getHmp() throws Exception
+	public Matrix getHmp() throws Exception
 	{
 		if (hmp == null)
 		{
+			hmp = new Matrix(quadrature.getM());
 			int i = 0, j;
 			for (Quadrature.QP qp_i : quadrature.getQuadraturePoints())
 			{
 				j = 0;
 				for (Quadrature.QP qp_j : quadrature.getQuadraturePoints())
 				{
-					hmp[i][j] = getRedistribution(qp_i.getV(), - qp_j.getV());
+					hmp.setItemValue(i, j, getRedistributionValue(- qp_i.getV(), qp_j.getV()));
 					j++;
 				}
 				i++;
@@ -66,17 +55,18 @@ public class Redistribution
 		return hmp;
 	}
 	
-	private double[][] getHpm() throws Exception
+	public Matrix getHpm() throws Exception
 	{
 		if (hpm == null)
 		{
+			hpm = new Matrix(quadrature.getM());
 			int i = 0, j;
 			for (Quadrature.QP qp_i : quadrature.getQuadraturePoints())
 			{
 				j = 0;
 				for (Quadrature.QP qp_j : quadrature.getQuadraturePoints())
 				{
-					hpm[i][j] = getRedistribution( - qp_i.getV(), qp_j.getV());
+					hpm.setItemValue(i, j, getRedistributionValue(qp_i.getV(), - qp_j.getV()));
 					j++;
 				}
 				i++;
@@ -85,17 +75,18 @@ public class Redistribution
 		return hpm;
 	}
 	
-	private double[][] getHpp() throws Exception
+	public Matrix getHpp() throws Exception
 	{
 		if (hpp == null)
 		{
+			hpp = new Matrix(quadrature.getM());
 			int i = 0, j;
 			for (Quadrature.QP qp_i : quadrature.getQuadraturePoints())
 			{
 				j = 0;
 				for (Quadrature.QP qp_j : quadrature.getQuadraturePoints())
 				{
-					hpp[i][j] = getRedistribution( - qp_i.getV(), qp_j.getV());
+					hpp.setItemValue(i, j, getRedistributionValue(qp_i.getV(), qp_j.getV()));
 					j++;
 				}
 				i++;
@@ -104,7 +95,7 @@ public class Redistribution
 		return hpp;
 	}
 	
-	private double getRedistribution(double v_i, double v_j)
+	private double getRedistributionValue(double v_i, double v_j)
 	{
 		double summ = 0;
 		for (int k = 0; k <= quadrature.getM() - 1; k++)
@@ -121,6 +112,5 @@ public class Redistribution
 	}
 	
 	private Quadrature quadrature;
-	private double[][] hmm, hmp, hpm, hpp;
-	private double[][][][] redistributionMatrix;
+	private Matrix hmm, hmp, hpm, hpp;
 }
