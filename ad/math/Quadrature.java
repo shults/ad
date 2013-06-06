@@ -155,10 +155,10 @@ public class Quadrature
 		return angles;
 	}
 	
-	public Coll getQuadraturePointsWeights() throws Exception
+	public Row getQuadraturePointsWeights() throws Exception
 	{
 		ArrayList<QP> qPoints = getQuadraturePoints();
-		Coll angleWeight = new Coll(qPoints.size());
+		Row angleWeight = new Row(qPoints.size());
 		for (int i = 0; i < qPoints.size(); i++)
 			angleWeight.setItemValue(i, qPoints.get(i).getW());
 		return angleWeight;

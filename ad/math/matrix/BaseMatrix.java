@@ -43,7 +43,7 @@ public abstract class BaseMatrix
 		{
 			for (int j = 0; j < getColsNumber(); j++)
 			{
-				result += String.format("%,8.3f", getItemValue(i, j));
+				result += String.format("%,10.5f", getItemValue(i, j));
 			}
 			result += "\n";
 		}

@@ -44,8 +44,24 @@ public abstract class Vector
 	{
 		String returnValue = new String();
 		for (int i = 0; i < getSize(); i++)
-			returnValue += String.format("%,8.3f", getItemValue(i));
+			returnValue += String.format("%,12.9f", getItemValue(i));
 		return returnValue;
+	}
+	
+	public double getMinValue()
+	{
+		double minValue = items[0];
+		for (int i = 0; i < items.length; i++)
+			minValue = minValue > items[i] ? items[i] : minValue;
+		return minValue;
+	}
+	
+	public double getMaxValue()
+	{
+		double maxValue = items[0];
+		for (int i = 0; i < items.length; i++)
+			maxValue = maxValue < items[i] ? items[i] : maxValue;
+		return maxValue;
 	}
 	
 	public abstract Vector multiply(double multiplier) throws Exception;
