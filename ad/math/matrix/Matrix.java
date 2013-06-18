@@ -5,7 +5,8 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author shults
+ * @version 0.1
+ * @author Yaroslav Kotsur
  */
 public class Matrix extends BaseMatrix
 {

@@ -6,7 +6,8 @@ package ad.math.matrix;
 
 /**
  *
- * @author shults
+ * @version 0.1
+ * @author Yaroslav Kotsur
  */
 public class Coll extends Vector
 {

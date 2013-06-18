@@ -6,9 +6,11 @@ import ad.math.matrix.Row;
 import ad.math.matrix.Coll;
 
 /**
- * This
- *
- * @author shults
+ * Current class implemets quadrature 
+ * manipulation in adding-doubling method
+ * 
+ * @version 0.1
+ * @author Yaroslav Kotsur 
  */
 public class Quadrature
 {

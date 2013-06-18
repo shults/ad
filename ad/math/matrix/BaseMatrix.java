@@ -1,12 +1,11 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ad.math.matrix;
+
+import ad.Config;
 
 /**
  *
- * @author shults
+ * @version 0.1
+ * @author Yaroslav Kotsur
  */
 public abstract class BaseMatrix
 {
@@ -43,7 +42,7 @@ public abstract class BaseMatrix
 		{
 			for (int j = 0; j < getColsNumber(); j++)
 			{
-				result += String.format("%,10.5f", getItemValue(i, j));
+				result += String.format(Config.FLOAT_FORMAT, getItemValue(i, j));
 			}
 			result += "\n";
 		}

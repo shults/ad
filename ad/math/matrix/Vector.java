@@ -1,12 +1,12 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package ad.math.matrix;
+
+import ad.AdApplication;
+import ad.Config;
 
 /**
  *
- * @author shults
+ * @version 0.1
+ * @author Yaroslav Kotsur
  */
 public abstract class Vector
 {
@@ -44,7 +44,7 @@ public abstract class Vector
 	{
 		String returnValue = new String();
 		for (int i = 0; i < getSize(); i++)
-			returnValue += String.format("%,12.9f", getItemValue(i));
+			returnValue += String.format(Config.FLOAT_FORMAT , getItemValue(i));
 		return returnValue;
 	}
 	

@@ -4,7 +4,8 @@ import java.util.ArrayList;
 
 /**
  *
- * @author shults
+ * @version 0.1
+ * @author Yaroslav Kotsur
  */
 public class Logger
 {

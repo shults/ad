@@ -5,7 +5,8 @@ import ad.math.matrix.Matrix;
 
 /**
  *
- * @author shults
+ * @version 0.1
+ * @author Yaroslav Kotsur
  */
 public class Redistribution
 {

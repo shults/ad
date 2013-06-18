@@ -4,7 +4,8 @@ import ad.Logger;
 
 /**
  *
- * @author shults
+ * @version 0.1
+ * @author Yaroslav Kotsur
  */
 public class LegandrePolynom
 {

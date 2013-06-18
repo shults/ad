@@ -17,6 +17,7 @@ public class Ad
 		double nslab = 1;
 		double t = 1;
 		int M = 32;
+		boolean detail = false; 
 		try {
 			for (int i = 0; i < args.length; i++) {
 				switch (args[i]) {
@@ -47,13 +48,16 @@ public class Ad
 						if (M < 4 || M > 64)
 							throw new CliException("Number of qudrature (-m) points must be in range 4..64");
 						continue;
+					case "-detail":
+						detail = true;
+						continue;
 					default:
 						throw new CliException("Argument " + args[i] + " not found");		
 				}
 			}
 			if (a == 0)
 				throw new CliException("Albedo (-a) cannot be equal to zero");
-			Application.run(a, g, t, nslab, M);
+			AdApplication.run(a, g, t, nslab, M, detail);
 		} catch (CliException e) {
 			System.out.println();
 			System.err.println(e.getMessage());
@@ -63,8 +67,6 @@ public class Ad
 			System.out.println();
 			System.err.println(e.getMessage());
 		}
-		System.out.println("\n\nLogger info:");
-		Logger.printMessages();
 	}
 
 	private static String getHelpMsg()
